@@ -143,6 +143,7 @@ todoList.addEventListener("click", (e) => {
         todoArray.push(element);
       } else {
         e.target.parentNode.parentNode.remove();
+        addTaskButton.disabled = false;
       }
     });
 
