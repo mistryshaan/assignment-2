@@ -48,8 +48,8 @@ renderTodoList();
 
 // Add task event handler
 todoForm.addEventListener("submit", (event) => {
-  addTodo();
   event.preventDefault();
+  addTodo();
 });
 // END - Add task event handler
 
@@ -84,37 +84,33 @@ function addTodo() {
   todoInputValue.value = "";
 
   document.getElementById("message").style.display = "none";
-
-  console.log("Add task");
 }
 // END - Add task function
 
 // Search task event handler
-// Search event is not allowing the submit event of form
-const tempTodoArray = JSON.parse(localStorage.getItem("todo")).map(element => element["value"]);
 todoInputValue.addEventListener("input", (e) => {
-  // if(tempTodoArray !== null) {
-  //   if(tempTodoArray.includes(todoInputValue.value)) {
-  //     message.innerText = "Task already exists";
-  //     message.style.display = "block";
-  //     addTaskButton.disabled = "true";
-  //     addTaskButton.style.opacity = "0.7";
-  //   } else if(todoInputValue.value === "") {
-  //     message.style.display = "none";
-  //     addTaskButton.disabled = "false";
-  //     addTaskButton.style.opacity = "1";
-  //   } else {
-  //     message.innerText = "Task not found";
-  //     message.style.display = "block";
-  //     addTaskButton.disabled = "false";
-  //     addTaskButton.style.opacity = "1";
-  //   }
-  // } else {
-  //   message.innerText = "No todo. Add a new one";
-  //   message.style.display = "block";
-  // }
-  // console.log("Search");
-  // e.stopPropagation();
+  const tempTodoArray = JSON.parse(localStorage.getItem("todo")).map(element => element["value"]);
+  if(tempTodoArray !== null) {
+    if(tempTodoArray.includes(todoInputValue.value)) {
+      message.innerText = "Task already exists";
+      message.style.display = "block";
+      addTaskButton.disabled = true;
+      addTaskButton.style.opacity = "0.7";
+    } else if(todoInputValue.value === "") {
+      message.style.display = "none";
+      addTaskButton.style.opacity = "1";
+      addTaskButton.disabled = false;
+    } else {
+      message.innerText = "Task not found";
+      message.style.display = "block";
+      addTaskButton.style.opacity = "1";
+      addTaskButton.disabled = false;
+    }
+  } else {
+    message.innerText = "No todo. Add a new one";
+    message.style.display = "block";
+    addTaskButton.disabled = false;
+  }
 });  
 // END - Search task event handler
 
@@ -137,7 +133,6 @@ todoList.addEventListener("click", (e) => {
     }
 
     localStorage.setItem("todo", JSON.stringify(todoArray));
-    console.log(e.target.nextSibling)
   }
 
   if(e.target.type !== "checkbox") {
