@@ -34,10 +34,12 @@
 
 #todoForm input[type="text"] {
   width: 80%;
+  background-color: white;
 }
 
 #todoForm input[type="text"]:focus {
   outline: 1px solid rgb(0, 110, 255);
+  background-color: white;
 }
 
 #todoForm button {

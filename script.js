@@ -91,10 +91,10 @@ function addTodo() {
 
 // Search task event handler
 // Search event is not allowing the submit event of form
+const tempTodoArray = JSON.parse(localStorage.getItem("todo")).map(element => element["value"]);
 todoInputValue.addEventListener("input", () => {
-  const todoArray = JSON.parse(localStorage.getItem("todo")).map(element => element["value"]);
-  if(todoArray !== null) {
-    if(todoArray.includes(todoInputValue.value)) {
+  if(tempTodoArray !== null) {
+    if(tempTodoArray.includes(todoInputValue.value)) {
       message.innerText = "Task already exists";
       message.style.display = "block";
       addTaskButton.disabled = "true";
@@ -114,7 +114,7 @@ todoInputValue.addEventListener("input", () => {
     message.style.display = "block";
   }
   console.log("Search");
-});  
+}, true);  
 // END - Search task event handler
 
 // Event handler for checkbox & delete
