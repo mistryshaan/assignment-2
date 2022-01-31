@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+  <g id="Group_1" data-name="Group 1" transform="translate(-783 -272)">
+    <g id="Rectangle_1" data-name="Rectangle 1" transform="translate(783 272)" fill="#fff2e8" stroke="#ffdbc6" stroke-width="1">
+      <rect width="18" height="18" rx="4" stroke="none"/>
+      <rect x="0.5" y="0.5" width="17" height="17" rx="3.5" fill="none"/>
+    </g>
+    <line id="Line_1" data-name="Line 1" x2="5" transform="translate(789.5 281.5)" fill="none" stroke="#fc9d7c" stroke-width="1"/>
+  </g>
+</svg>
