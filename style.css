@@ -1,0 +1,117 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.container {
+  width: 50%;
+  margin: auto;
+  margin-top: 50px;
+  background-color: rgba(231, 231, 231, 0.664);
+  padding: 20px 40px;
+}
+
+.container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: rgb(163, 163, 163);
+}
+
+.container > div {
+  margin-bottom: 5%;
+}
+
+#todoForm input,
+#todoForm button {
+  outline: none;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+#todoForm input[type="text"] {
+  width: 80%;
+}
+
+#todoForm input[type="text"]:focus {
+  outline: 1px solid rgb(0, 110, 255);
+}
+
+#todoForm button {
+  margin-left: 4%;
+  width: 15%;
+  background-color: rgb(0, 110, 255);
+  color: white;
+  cursor: pointer;
+}
+
+#todoForm button i {
+  margin-right: 5px;
+}
+
+.todoListContainer {
+  background-color: white;
+  border-radius: 5px;
+}
+
+.todoListContainer h5 {
+  font-size: 18px;
+  padding: 20px 10px;
+  border-bottom: 2px solid rgba(231, 231, 231, 0.61);
+  border-width: 100%;
+  color: rgb(184, 184, 184);
+}
+
+.todoListContainer ul {
+  padding: 8px 10px;
+  list-style-type: none;
+  margin-top: 1%;
+}
+
+.todoListContainer ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgb(112, 112, 112);
+  margin: 10px 0;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(117, 115, 115, 0.61);
+  transition: 0.5s ease-in-out;
+}
+
+.todoListContainer ul li:last-child {
+  border-bottom: none;
+}
+
+.todoListContainer ul li span input {
+  margin-right: 5px;
+  width: 15px;
+  height: 15px;
+}
+
+.todoListContainer ul li span:nth-child(2) {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgba(202, 202, 202, 0.63);
+}
+
+.todoListContainer ul li span i {
+  color: red;
+  cursor: pointer;
+}
+
+.todoListContainer #message {
+  padding: 8px 10px;
+  color: red;
+  display: none;
+}
+
+@media (max-width: 1045px) {
+  .container {
+    width: 80%;
+  }
+}
