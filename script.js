@@ -68,6 +68,8 @@ function addTodo() {
   li.appendChild(span1);
   li.appendChild(span2);
 
+  li.style.animation = "fadeIn 0.5s 1 linear";
+
   todoList.appendChild(li);
 
   const todoArray = JSON.parse(localStorage.getItem("todo"));
@@ -142,7 +144,8 @@ todoList.addEventListener("click", (e) => {
       if(element["value"] != e.target.parentNode.parentNode.innerText) {
         todoArray.push(element);
       } else {
-        e.target.parentNode.parentNode.remove();
+        e.target.parentNode.parentNode.style.animation = "fadeOut 0.5s 1 linear";
+        setTimeout(() => e.target.parentNode.parentNode.remove(), 400);
         addTaskButton.disabled = false;
       }
     });

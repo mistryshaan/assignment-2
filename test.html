@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      li {
+        animation: fadeIn 0.5s 1 linear;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      #list {
+        width: 20%;
+        position: relative;
+      }
+
+      @keyframes fadeOut {
+        from {
+          left: 0;
+        }
+
+        50% {
+          left: 100px;
+        }
+
+        to {
+          left: -100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="addListItem()">Add animated list</button>
+    <button onclick="deleteList()">Delete list</button>
+
+    <ul id="list"></ul>
+
+    <script>
+      let counter = 0;
+      function addListItem() {
+        counter++;
+
+        const li = document.createElement("li");
+        li.innerText = `List ${counter}`;
+
+        document.getElementById("list").appendChild(li);
+      }
+
+      function deleteList() {
+        document.getElementById("list").style.animation = "fadeOut 1s 1 linear";
+      }
+    </script>
+  </body>
+</html>
