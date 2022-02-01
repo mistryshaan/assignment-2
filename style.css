@@ -136,8 +136,22 @@
   display: none;
 }
 
-@media (max-width: 1045px) {
+@media (min-width: 688px) and (max-width: 1045px) {
   .container {
     width: 80%;
+  }
+}
+
+@media (max-width: 687px) {
+  .container {
+    width: 90%;
+  }
+
+  #todoForm input[type="text"] {
+    width: 63%;
+  }
+
+  #todoForm button {
+    width: 30%;
   }
 }
