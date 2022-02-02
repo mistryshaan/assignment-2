@@ -85,6 +85,11 @@
   transition: 0.5s ease-in-out;
 }
 
+.todoListContainer ul li span:first-child {
+  width: 90%;
+  overflow-wrap: break-word;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
