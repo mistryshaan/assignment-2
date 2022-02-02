@@ -60,7 +60,7 @@ function addTodo() {
   const span2 = document.createElement("span");
   const icon = document.createElement("i");
 
-  span1.innerHTML = `<input type="checkbox"><img src='pending.svg'>${todoInputValue.value}`;
+  span1.innerHTML = `<input type="checkbox"><img src='pending.svg'>${todoInputValue.value.toString().trim()}`;
 
   icon.setAttribute("class", "fas fa-trash");
   span2.appendChild(icon);
@@ -74,15 +74,14 @@ function addTodo() {
 
   const todoArray = JSON.parse(localStorage.getItem("todo"));
   if(todoArray === null) {
-    localStorage.setItem("todo", JSON.stringify([{value: todoInputValue.value, status: "false"}]));
+    localStorage.setItem("todo", JSON.stringify([{value: todoInputValue.value.toString().trim(), status: "false"}]));
   } else {
     todoArray.push({
-      value: todoInputValue.value,
+      value: todoInputValue.value.toString().trim(),
       status: "false"
     });
     localStorage.setItem("todo", JSON.stringify(todoArray));
   }
-
   todoInputValue.value = "";
 
   document.getElementById("message").style.display = "none";
@@ -92,26 +91,31 @@ function addTodo() {
 // Search task event handler
 todoInputValue.addEventListener("input", (e) => {
   const tempTodoArray = JSON.parse(localStorage.getItem("todo")).map(element => element["value"]);
-  if(tempTodoArray !== null) {
-    if(tempTodoArray.includes(todoInputValue.value)) {
-      message.innerText = "Task already exists";
-      message.style.display = "block";
-      addTaskButton.disabled = true;
-      addTaskButton.style.opacity = "0.7";
-    } else if(todoInputValue.value === "") {
-      message.style.display = "none";
-      addTaskButton.style.opacity = "1";
-      addTaskButton.disabled = false;
+  if(todoInputValue.value.toString().trim() === "") {
+    addTaskButton.disabled = true;
+    addTaskButton.style.opacity = "0.7";
+  } else {
+    if(tempTodoArray !== null) {
+      if(tempTodoArray.includes(todoInputValue.value)) {
+        message.innerText = "Task already exists";
+        message.style.display = "block";
+        addTaskButton.disabled = true;
+        addTaskButton.style.opacity = "0.7";
+      } else if(todoInputValue.value === "") {
+        message.style.display = "none";
+        addTaskButton.style.opacity = "1";
+        addTaskButton.disabled = false;
+      } else {
+        message.innerText = "Task not found";
+        message.style.display = "block";
+        addTaskButton.style.opacity = "1";
+        addTaskButton.disabled = false;
+      }
     } else {
-      message.innerText = "Task not found";
+      message.innerText = "No todo. Add a new one";
       message.style.display = "block";
-      addTaskButton.style.opacity = "1";
       addTaskButton.disabled = false;
     }
-  } else {
-    message.innerText = "No todo. Add a new one";
-    message.style.display = "block";
-    addTaskButton.disabled = false;
   }
 });  
 // END - Search task event handler
