@@ -83,6 +83,7 @@
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(117, 115, 115, 0.61);
   transition: 0.5s ease-in-out;
+  /* animation: removeItem 1s 1 linear forwards; */
 }
 
 .todoListContainer ul li span:first-child {
@@ -99,12 +100,14 @@
   }
 }
 
-@keyframes fadeOut {
+@keyframes removeItem {
   from {
     opacity: 1;
+    transform: translateX(0px);
   }
   to {
     opacity: 0;
+    transform: translateX(100%);
   }
 }
 

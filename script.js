@@ -152,7 +152,7 @@ todoList.addEventListener("click", (e) => {
       if(element["value"] != e.target.parentNode.parentNode.innerText) {
         todoArray.push(element);
       } else {
-        e.target.parentNode.parentNode.style.animation = "fadeOut 0.5s 1 linear";
+        e.target.parentNode.parentNode.style.animation = "removeItem 0.5s 1 linear";
         setTimeout(() => e.target.parentNode.parentNode.remove(), 400);
         addTaskButton.disabled = false;
       }
