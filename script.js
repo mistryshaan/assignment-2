@@ -17,7 +17,7 @@ function renderTodoList() {
         const span1 = document.createElement("span");
         const span2 = document.createElement("span");
         const icon = document.createElement("i");
-    
+
         span1.innerHTML = `<input type="checkbox" ${element["status"] === "true" ? "checked" : ""}><img src='${element["status"] === "true" ? "complete.svg" : "pending.svg"}'>${element["value"]}`;
 
         if(element["status"] === "true") {
@@ -41,6 +41,12 @@ function renderTodoList() {
       document.getElementById("message").style.display = "block";
     }
   }
+
+  if(todoInputValue.value === "") {
+    addTaskButton.style.opacity = 0.7;
+  } else {
+    addTaskButton.style.opacity = 1;
+  }
 }
 // END - Outputs the Todo list
 
@@ -60,7 +66,7 @@ function addTodo() {
   const span2 = document.createElement("span");
   const icon = document.createElement("i");
 
-  span1.innerHTML = `<input type="checkbox"><img src='pending.svg'>${todoInputValue.value.toString().trim()}`;
+  span1.innerHTML = `<input type="checkbox"><img src='pending.svg'>${todoInputValue.value.toString().trim().replace(/\s\s+/g, " ")}`;
 
   icon.setAttribute("class", "fas fa-trash");
   span2.appendChild(icon);
@@ -74,32 +80,33 @@ function addTodo() {
 
   const todoArray = JSON.parse(localStorage.getItem("todo"));
   if(todoArray === null) {
-    localStorage.setItem("todo", JSON.stringify([{value: todoInputValue.value.toString().trim(), status: "false"}]));
+    localStorage.setItem("todo", JSON.stringify([{value: todoInputValue.value.toString().trim().replace(/\s\s+/g, " "), status: "false"}]));
   } else {
     todoArray.push({
-      value: todoInputValue.value.toString().trim(),
+      value: todoInputValue.value.toString().trim().replace(/\s\s+/g, " "),
       status: "false"
     });
     localStorage.setItem("todo", JSON.stringify(todoArray));
   }
   todoInputValue.value = "";
 
-  document.getElementById("message").style.display = "none";
+  message.style.display = "none";
+  addTaskButton.style.opacity = "0.7"
+
 }
 // END - Add task function
 
 // Search task event handler
-todoInputValue.addEventListener("input", () => {
-  let delay;
-  clearTimeout(delay);
-  delay = setTimeout(() => {
+let delay = setTimeout(() => {
+  todoInputValue.addEventListener("input", () => {
+    clearTimeout(delay)
     const tempTodoArray = JSON.parse(localStorage.getItem("todo")).map(element => element["value"]);
-    if(todoInputValue.value.toString().trim() === "") {
+    if(todoInputValue.value.toString().trim().replace(/\s\s+/g, " ") === "") {
       addTaskButton.disabled = true;
       addTaskButton.style.opacity = "0.7";
     } else {
       if(tempTodoArray !== null) {
-        if(tempTodoArray.includes(todoInputValue.value)) {
+        if(tempTodoArray.includes(todoInputValue.value.toString().trim().replace(/\s\s+/g, " "))) {
           message.innerText = "Task already exists";
           message.style.display = "block";
           addTaskButton.disabled = true;
@@ -118,10 +125,11 @@ todoInputValue.addEventListener("input", () => {
         message.innerText = "No todo. Add a new one";
         message.style.display = "block";
         addTaskButton.disabled = false;
+        addTaskButton.style.opacity = "1";
       }
     }
-  }, 500);
-});  
+  });  
+}, 500);
 // END - Search task event handler
 
 // Event handler for checkbox & delete
